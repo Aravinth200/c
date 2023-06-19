@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct stack
+{
+    int data;
+    struct stack*next;
+};
+struct stack*top=0;
+void push();
+void pop();
+void peek();
+void display();
+int main()
+{
+    int x;
+    do
+    {
+    printf("Enter the option\n");
+    scanf("%d",&x);
+    switch(x)
+    {
+        case 1:push();
+               break;
+        case 2:pop();
+               break;
+        case 3:peek();//working
+               break;
+        case 4:display();
+               break;
+        default:printf("Invalid option\n");
+                break;
+    }
+    }while(x!=5);
+}
+void push()
+{
+    int x;
+    printf("Enter the x value\n");
+    scanf("%d",&x);
+    struct stack*node=(struct stack*)malloc(sizeof(struct stack));
+    node->data=x;
+    node->next=top;
+    top=node;
+}
+void pop()
+{
+    struct stack*temp;
+    temp=top;
+    if(top==0)
+    {
+        printf("Node is empty\n");
+    }
+    else
+    {
+        top=top->next;
+        free(temp);
+    }
+}
+void peek()
+{
+     if(top==0)
+    {
+        printf("Node is empty\n");
+    }
+    else
+    {
+        printf("%d\n",top->data);
+    }
+
+}
+void display()
+{
+    struct stack*temp;
+    temp=top;
+     if(top==0)
+    {
+        printf("Node is empty\n");
+    }
+    else
+    {
+        while(temp!=0)
+        {
+            printf("%d\n",temp->data);
+            temp=temp->next;
+        }
+
+    }
+}
